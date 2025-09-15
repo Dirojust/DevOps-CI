@@ -32,8 +32,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Show current time and date
         run: |
-          echo "Current time: $(date '+%H:%M:%S')"
-          echo "Current date: $(date '+%Y-%m-%d')"
           echo "Repository: ${{ github.repository }}"
           echo "Branch/Ref: ${{ github.ref }}"
 
