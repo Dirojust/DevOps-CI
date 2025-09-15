@@ -36,7 +36,7 @@ jobs:
           echo "Current date: $(Get-Date -Format 'yyyy-MM-dd')"
           echo "Repository: ${{ github.repository }}"
           echo "Branch/Ref: ${{ github.ref }}"
-         shell: powershell
+        shell: powershell
 
       - name: Message
         run: echo Bye!
