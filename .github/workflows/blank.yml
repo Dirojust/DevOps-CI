@@ -38,5 +38,10 @@ jobs:
           echo "Branch/Ref: ${{ github.ref }}"
         shell: powershell
 
+      - name: Variable tests
+        run: |
+          echo "Variable: ${{ vars.VARIABLETEST }}"
+          echo "Secret: ${{ secrets.SECRETTEST }}"
+
       - name: Message
         run: echo Bye!
