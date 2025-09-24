@@ -12,7 +12,7 @@ jobs:
 
     env:
       DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-      IMAGE_REPO: ${{ vars.IMAGE_REPO }}
+      IMAGE_REPO: ${{ vars.IMAGE_NAME }}
       IMAGE_TAG: ${{ vars.IMAGE_TAG }}
 
     steps:
