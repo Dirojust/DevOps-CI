@@ -21,10 +21,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Tag docker image from the repository
-        run: |
-          docker build -f Dockerfile \
-            -t "${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_TAG }}" \
-            .
+        run: docker build -f Dockerfile -t "${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_TAG }}" .
 
       - name: Push the image to DockerHub
         run: |
