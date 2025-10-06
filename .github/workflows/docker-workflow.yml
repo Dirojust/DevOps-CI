@@ -55,7 +55,7 @@ jobs:
           }
 
       - name: Save container logs
-        run: docker logs test-container > container-logs.txt
+        run: docker logs --timestamps test-container > container-logs.txt
 
       - name: Upload logs as artifact
         uses: actions/upload-artifact@v4
