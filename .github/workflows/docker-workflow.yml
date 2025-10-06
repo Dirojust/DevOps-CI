@@ -8,7 +8,13 @@ on:
 
 jobs:
   validate-and-push:
+    # Multiple operating systems - optional
+    # strategy:
+    #   matrix:
+    #     os: [windows-latest, ubuntu-latest, macos-latest]
+    # runs-on: ${{ matrix.os }}
     runs-on: self-hosted
+
     steps:
       - name: Checkout repository from Github
         uses: actions/checkout@v4
@@ -48,3 +54,12 @@ jobs:
         run: |
           docker stop test-container
           docker rm test-container
+
+      - name: Save container logs
+        run: docker logs test-container > container-logs.txt
+
+      - name: Upload logs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-logs
+          path: container-logs.txt
