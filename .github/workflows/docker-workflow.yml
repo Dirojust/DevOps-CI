@@ -32,18 +32,7 @@ jobs:
         run: Start-Sleep -Seconds 15
 
       - name: Test container with curl
-        run: |
-          powershell -Command "
-            $response = Invoke-WebRequest http://localhost:5000 -UseBasicParsing
-            Write-Host 'Response from container:'
-            Write-Host $response.Content
-            if ($response.Content -ne 'Hola desde Bolivia!') {
-              Write-Host 'Unexpected response!'
-              exit 1
-            } else {
-              Write-Host 'Response is correct!'
-            }
-          "
+        run: powershell -Command "$response = Invoke-WebRequest http://localhost:5000 -UseBasicParsing; Write-Host 'Response from container:'; Write-Host $response.Content; if ($response.Content -ne 'Hola desde Bolivia!') { Write-Host 'Unexpected response!'; exit 1 } else { Write-Host 'Response is correct!' }"
 
       - name: Stop and remove container
         run: |
