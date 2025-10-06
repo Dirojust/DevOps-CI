@@ -44,7 +44,7 @@ jobs:
       - name: Test container with curl
         shell: powershell
         run: |
-          $response = Invoke-WebRequest http://localhost:5000 -UseBasicParsing
+          $response = Invoke-WebRequest http://localhost:5000/saludo -UseBasicParsing
           Write-Host "Response from container:"
           Write-Host $response.Content
           if ($response.Content -ne "Hola desde Bolivia!") {
