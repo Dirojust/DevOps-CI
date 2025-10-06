@@ -41,13 +41,15 @@ jobs:
       - name: Wait for container to start
         run: Start-Sleep -Seconds 10
 
-      - name: Test container with curl
+      - name: Test container with curl - dynamic route
         shell: powershell
         run: |
-          $response = Invoke-WebRequest http://localhost:5000/saludo -UseBasicParsing
+          $name = "${{ vars.DOCKER_USERNAME }}"
+          $url = "http://localhost:5000/saludo/$name"
+          $response = Invoke-WebRequest $url -UseBasicParsing
           Write-Host "Response from container:"
           Write-Host $response.Content
-          if ($response.Content -ne "Hola desde Bolivia!") {
+          if ($response.Content -ne "Hola $name desde Bolivia!") {
             Write-Host "Unexpected response!"
             exit 1
           } else {
