@@ -32,10 +32,14 @@ jobs:
         run: docker push "${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_TAG }}"
 
       - name: Run the container from the image
-        run: powershell -Command "docker stop test-container -t 0; docker rm test-container -f; docker run -d -p 5000:5000 --name test-container '${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_TAG }}'"
+        shell: powershell
+        run: |
+          docker stop test-container -t 0
+          docker rm test-container -f
+          docker run -d -p 5000:5000 --name test-container '${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_TAG }}'
 
       - name: Wait for container to start
-        run: Start-Sleep -Seconds 15
+        run: Start-Sleep -Seconds 10
 
       - name: Test container with curl
         shell: powershell
